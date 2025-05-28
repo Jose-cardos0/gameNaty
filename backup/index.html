@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catch Naty</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="score">0</div>
+      <img id="naty" src="assets/natyComCesto1.png" alt="Naty com cesto" />
+
+      <button id="btnStart">
+        <img src="assets/buttonStart.png" alt="Iniciar jogo" />
+      </button>
+
+      <div id="controls">
+        <button id="btnLeft">
+          <img src="assets/setaEsquerda.png" alt="Mover para esquerda" />
+        </button>
+        <button id="btnRight">
+          <img src="assets/setaDireita.png" alt="Mover para direita" />
+        </button>
+      </div>
+
+      <div id="win-screen" class="hidden">
+        <h1>CONGRATULATIONS<br />VC PEGOU MUITOS PRODUTOS!</h1>
+        <button id="btnClickHere">CLIQUE AQUI</button>
+        <button id="btnRestart">
+          <img src="assets/buttonRestart.png" alt="Reiniciar jogo" />
+        </button>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

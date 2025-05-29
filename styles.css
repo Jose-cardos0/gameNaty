@@ -80,8 +80,8 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   box-shadow: 0 0 10px rgba(183, 253, 71, 0.5);
 }
 
@@ -275,4 +275,198 @@ body {
 
 .double-active {
   filter: drop-shadow(0 0 20px #ff4081);
+}
+
+/* Estilos do Baú de Conquistas */
+.collection-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: clamp(40px, 8vw, 60px);
+  height: clamp(40px, 8vw, 60px);
+  transition: transform 0.2s;
+  z-index: 100;
+}
+
+.collection-button:hover {
+  transform: scale(1.1);
+}
+
+.collection-button img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+#collection-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.collection-content {
+  position: relative;
+  width: min(95%, 800px);
+  height: min(100vh, 400px);
+  background: url("assets/bgcolecao.png") no-repeat center center;
+  background-size: contain;
+  padding: clamp(80px, 4vw, 40px);
+  border-radius: 20px;
+  padding-top: 120px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#btnCloseCollection {
+  position: absolute;
+  top: clamp(10px, 2vw, 20px);
+  right: clamp(10px, 2vw, 20px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: clamp(30px, 6vw, 40px);
+  height: clamp(30px, 6vw, 40px);
+  transition: transform 0.2s;
+}
+
+#btnCloseCollection:hover {
+  transform: scale(1.1);
+}
+
+#btnCloseCollection img {
+  width: 100%;
+  height: 100%;
+}
+
+.collection-content h2 {
+  color: #fff;
+  font-size: clamp(24px, 5vw, 32px);
+  text-align: center;
+  margin-bottom: clamp(15px, 3vw, 30px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-top: auto;
+  align-items: start;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.collection-item {
+  border-radius: 10px;
+  padding: clamp(2px, 1vw, 5px);
+  width: 100%;
+  max-width: 120px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.collection-item:hover {
+  transform: scale(1.05);
+}
+
+.collection-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.collection-item .item-name {
+  color: #fff;
+  font-size: clamp(10px, 2vw, 12px);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  word-break: break-word;
+}
+
+#reward-message {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(183, 253, 71, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(183, 253, 71, 0.8);
+  }
+}
+
+/* Estilização da scrollbar do grid de coleção */
+.collection-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.collection-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.collection-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.collection-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+  .collection-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .collection-item {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 481px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collection-content {
+    width: 30%;
+  }
 }

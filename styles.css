@@ -95,12 +95,25 @@ body {
 
 .collect-effect {
   position: absolute;
+  pointer-events: none;
+  animation: floatUp 1s ease-out forwards;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.collect-effect .points {
   color: #4caf50;
   font-size: 24px;
   font-weight: bold;
-  pointer-events: none;
-  animation: floatUp 1s ease-out forwards;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.collect-effect .stars {
+  font-size: 20px;
+  animation: sparkle 1s linear infinite;
 }
 
 .miss-effect {
@@ -148,10 +161,11 @@ body {
 }
 
 #win-screen h1 {
-  color: #fff;
+  color: #ffeb3b;
   text-align: center;
   font-size: 30px;
-  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
 }
 
 #btnClickHere {
@@ -406,9 +420,10 @@ body {
 }
 
 #reward-message {
-  background: rgba(255, 255, 255, 0.1);
   padding: 15px;
+  max-width: 400px;
   border-radius: 10px;
+  text-align: center;
 }
 
 @keyframes glow {
@@ -495,5 +510,111 @@ body {
   100% {
     transform: translate(-50%, 50%) scale(1);
     filter: brightness(1);
+  }
+}
+
+/* Estilos para o sistema de níveis */
+.level-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeInOut 2s ease-in-out;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.level-up-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 215, 0, 0.9);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  animation: levelUp 3s ease-in-out;
+  z-index: 1000;
+}
+
+.level-up-effect .stars {
+  font-size: 40px;
+  margin-bottom: 10px;
+  animation: spin 3s linear infinite;
+}
+
+.level-up-effect div {
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.level-up-effect .subtitle {
+  font-size: 20px;
+  color: #666;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  20%,
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes levelUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
   }
 }

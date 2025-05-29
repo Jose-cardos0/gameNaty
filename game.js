@@ -23,6 +23,16 @@ let intervalId = null;
 let speed = 1212; // 3 produtos por segundo (1000ms / 3)
 let natyPosition = 50; // porcentagem da posição horizontal
 const moveStep = 5; // pixels para mover por clique
+let currentLevel = 1;
+let productsCollectedInLevel = 0;
+
+// Configurações dos níveis
+const levelConfig = {
+  1: { speed: 1500, productInterval: 2000, name: "Fácil" },
+  2: { speed: 1212, productInterval: 1500, name: "Médio" },
+  3: { speed: 800, productInterval: 1000, name: "Difícil" },
+};
+
 const productImages = [
   "produto1.webp",
   "produto2.webp",
@@ -105,9 +115,9 @@ const collectionProducts = [
   { id: "produto3", name: "L. Integral", image: "produto3.webp" },
   { id: "produto4", name: "Rq.Cremoso", image: "produto4.webp" },
   { id: "produto5", name: "Choconat", image: "produto5.webp" },
-  { id: "produto6", name: "Mussarela", image: "produto6.webp" },
+  { id: "produto6", name: "B. Graviola", image: "produto6.webp" },
   { id: "produto7", name: "Creme de Leite", image: "produto7.webp" },
-  { id: "produto8", name: "Q. Prato", image: "produto8.webp" },
+  { id: "produto8", name: "Rq C. Salsa", image: "produto8.webp" },
   { id: "produto9", name: "L. Zero Lac", image: "produto9.webp" },
   { id: "produto10", name: "B. Morango", image: "produto10.webp" },
   { id: "produto11", name: "Rq. Light", image: "produto11.webp" },
@@ -292,11 +302,23 @@ function showGameOver() {
 function showCollectEffect(product, points) {
   const effect = document.createElement("div");
   effect.className = "collect-effect";
+
+  // Efeito especial baseado nos pontos
+  if (combo >= 3) {
+    effect.innerHTML = `
+      <div class="points">+${points}</div>
+      <div class="stars">✨✨✨</div>
+    `;
+  } else {
+    effect.textContent = `+${points}`;
+  }
+
   effect.style.left = product.style.left;
   effect.style.top = product.style.top;
-  effect.textContent = `+${points}`;
   gameContainer.appendChild(effect);
   setTimeout(() => effect.remove(), 1000);
+
+  checkLevelProgress();
 }
 
 function showMissEffect(position) {
@@ -364,6 +386,54 @@ function updateCollectionDisplay() {
   });
 }
 
+// Função para mostrar o nível atual
+function showLevelMessage() {
+  const levelMsg = document.createElement("div");
+  levelMsg.className = "level-message";
+  levelMsg.textContent = `Nível ${currentLevel}: ${levelConfig[currentLevel].name}`;
+  gameContainer.appendChild(levelMsg);
+  setTimeout(() => levelMsg.remove(), 2000);
+}
+
+// Função para verificar progresso do nível
+function checkLevelProgress() {
+  productsCollectedInLevel++;
+  if (productsCollectedInLevel >= 10) {
+    if (currentLevel < 3) {
+      currentLevel++;
+      productsCollectedInLevel = 0;
+      showLevelMessage();
+      updateGameSpeed();
+      showLevelUpEffect();
+    }
+  }
+}
+
+// Função para atualizar velocidade do jogo
+function updateGameSpeed() {
+  speed = levelConfig[currentLevel].speed;
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = setInterval(
+      dropProduct,
+      levelConfig[currentLevel].productInterval
+    );
+  }
+}
+
+// Efeito de subida de nível
+function showLevelUpEffect() {
+  const effect = document.createElement("div");
+  effect.className = "level-up-effect";
+  effect.innerHTML = `
+    <div class="stars">⭐⭐⭐</div>
+    <div>NÍVEL ${currentLevel}!</div>
+    <div class="subtitle">Você está ficando melhor!</div>
+  `;
+  gameContainer.appendChild(effect);
+  setTimeout(() => effect.remove(), 3000);
+}
+
 // Inicialização do jogo
 function startGame() {
   // Inicia o jogo imediatamente
@@ -399,7 +469,13 @@ function startGameLogic() {
   updateLives();
 
   // Inicia a queda de produtos
-  intervalId = setInterval(dropProduct, speed);
+  currentLevel = 1;
+  productsCollectedInLevel = 0;
+  showLevelMessage();
+  intervalId = setInterval(
+    dropProduct,
+    levelConfig[currentLevel].productInterval
+  );
 }
 
 // Tela de vitória
@@ -415,7 +491,7 @@ function showWinScreen() {
       rewardMessage.innerHTML = `
         <div class="flex flex-col items-center gap-4">
           <img src="assets/${reward.image}" alt="${reward.name}" class="w-24 h-24 object-contain">
-          <div>Você ganhou um item novo: ${reward.name}!</div>
+          <div>Você ganhou um item novo: <span class="text-yellow-500">${reward.name}</span> ! Abra sua coleção no menu lateral!</div>
         </div>
       `;
       rewardMessage.classList.remove("hidden");

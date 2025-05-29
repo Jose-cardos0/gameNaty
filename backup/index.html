@@ -6,41 +6,59 @@
     <title>Catch Naty</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Open Graph Meta Tags (para compartilhamento em redes sociais) -->
+    <meta
+      property="og:title"
+      content="NATVILLE and CODENXT - Soluções Tecnológicas Avançadas"
+    />
+    <meta
+      property="og:description"
+      content="Desenvolvimento web, WordPress, software personalizado, bots e soluções de automação para o seu negócio. Transforme suas ideias em realidade digital."
+    />
+    <meta
+      property="og:image"
+      content="https://i.ibb.co/q3n2hLfn/natymobile.png"
+    />
+    <meta property="og:url" content="https://codenxt.online/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CODENXT" />
+    <meta property="og:locale" content="pt_BR" />
   </head>
   <body>
     <div id="game-container">
       <div id="score">0</div>
-      <img id="naty" src="assets/natyComCesto1.png" alt="Naty com cesto" />
+      <img id="naty" src="assets/natyComCesto1.webp" alt="Naty com cesto" />
 
       <button id="btnStart">
-        <img src="assets/buttonStart.png" alt="Iniciar jogo" />
+        <img src="assets/buttonStart.webp" alt="Iniciar jogo" />
       </button>
 
       <button id="btnCollection" class="collection-button">
-        <img src="assets/abrircolecao.png" alt="Abrir Coleção" />
+        <img src="assets/abrircolecao.webp" alt="Abrir Coleção" />
       </button>
 
       <div id="controls">
         <button id="btnLeft">
-          <img src="assets/setaEsquerda.png" alt="Mover para esquerda" />
+          <img src="assets/setaEsquerda.webp" alt="Mover para esquerda" />
         </button>
         <button id="btnRight">
-          <img src="assets/setaDireita.png" alt="Mover para direita" />
+          <img src="assets/setaDireita.webp" alt="Mover para direita" />
         </button>
       </div>
 
       <div id="win-screen" class="hidden">
         <h1>PARABÉNS</h1>
         <div id="reward-message" class="text-white text-xl mb-4"></div>
-        <button id="btnRestart">
-          <img src="assets/buttonRestart.png" alt="Reiniciar jogo" />
+        <button class="animate-bounce" id="btnRestart">
+          <img src="assets/buttonRestart.webp" alt="Reiniciar jogo" />
         </button>
       </div>
 
       <div id="collection-screen" class="hidden">
         <div class="collection-content">
           <button id="btnCloseCollection">
-            <img src="assets/closed.png" alt="Fechar Coleção" />
+            <img src="assets/closed.webp" alt="Fechar Coleção" />
           </button>
           <div id="collection-items" class="collection-grid"></div>
         </div>

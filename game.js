@@ -355,7 +355,7 @@ function updateCollectionDisplay() {
       `;
     } else {
       itemElement.innerHTML = `
-        <img src="assets/closed.png" alt="Bloqueado">
+        <img src="assets/closed.webp" alt="Bloqueado">
         <div class="item-name">???</div>
       `;
     }
